@@ -4,12 +4,12 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import CustomAppbar from "./components/CustomAppbar";
-import CustomTextarea from "./screens/HomeScreen/components/CustomTextarea";
-import { generatePrompt } from "./screens/HomeScreen/services/api";
+import LoadingIndicator from "../../components/LoadingIndicator";
+import CustomAppbar from "../../components/CustomAppbar";
+import CustomTextarea from "./components/CustomTextarea";
+import { generatePrompt } from "./services/api";
 
-function App() {
-  // states and constants
+function HomeScreen() {
   const [description, setDescription] = useState("");
   const [keywords, setKeywords] = useState([]);
   const isMobile = useMediaQuery("(max-width:600px)");
@@ -26,6 +26,7 @@ function App() {
   const onGeneratePromptClick = () => {
     dispatch(generatePrompt());
   };
+  if (loading) return <LoadingIndicator />;
   return (
     <>
       <CustomAppbar />
@@ -71,4 +72,4 @@ function App() {
   );
 }
 
-export default App;
+export default HomeScreen;
