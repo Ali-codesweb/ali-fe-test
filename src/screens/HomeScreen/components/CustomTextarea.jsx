@@ -2,8 +2,7 @@ import { Textarea } from "@mui/joy";
 import { useMediaQuery } from "@mui/material";
 import React from "react";
 
-function CustomTextarea({ value, props, onChange }) {
-  const isMobile = useMediaQuery("(max-width:600px)");
+function CustomTextarea({ value, placeholder, onChange }) {
   return (
     <Textarea
       minRows={2}
@@ -11,8 +10,8 @@ function CustomTextarea({ value, props, onChange }) {
       onChange={onChange}
       size="lg"
       variant="soft"
-      style={{ width: isMobile ? "400px" : "650px" }}
-      {...props}
+      style={{ width: "64vw" }}
+      placeholder={placeholder}
     />
   );
 }

@@ -4,7 +4,8 @@ const initialState = {
   loading: false,
   error: null,
   description: "",
-  keywords: [],
+  keywords: "",
+  keywordsList: [],
 };
 
 export const counterSlice = createSlice({
@@ -15,9 +16,15 @@ export const counterSlice = createSlice({
       state.description = action.payload;
     },
     setkeywords: (state, action) => {
-      const value = action.payload.target.value;
-      const keywordsList = value.split(" ").filter((val) => val != "");
-      state.keywords = keywordsList;
+      const keywordsList = action.payload.split(" ");
+      state.keywords = keywordsList.join(" ");
+      state.keywordsList = keywordsList.filter((val) => val != "");
+    },
+    onItemRemove: (state, action) => {
+      state.keywordsList = state.keywordsList.filter(
+        (text) => text != action.payload
+      );
+      state.keywords = state.keywordsList.join(" ");
     },
   },
   extraReducers: (builder) => {
@@ -37,6 +44,7 @@ export const counterSlice = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-export const { setDescription, setkeywords } = counterSlice.actions;
+export const { setDescription, setkeywords, onItemRemove } =
+  counterSlice.actions;
 
 export default counterSlice.reducer;
