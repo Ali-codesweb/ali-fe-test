@@ -1,16 +1,25 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
 import { generatePrompt } from "./services/api";
 const initialState = {
   loading: false,
   error: null,
+  description: "",
+  keywords: [],
 };
 
 export const counterSlice = createSlice({
   name: "homeScreenSlice",
   initialState,
-  reducers: {},
+  reducers: {
+    setDescription: (state, action) => {
+      state.description = action.payload;
+    },
+    setkeywords: (state, action) => {
+      const value = action.payload.target.value;
+      const keywordsList = value.split(" ").filter((val) => val != "");
+      state.keywords = keywordsList;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(generatePrompt.pending, (state) => {
@@ -28,6 +37,6 @@ export const counterSlice = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-// export const { increment, decrement, incrementByAmount } = counterSlice.actions;
+export const { setDescription, setkeywords } = counterSlice.actions;
 
 export default counterSlice.reducer;

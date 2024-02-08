@@ -8,24 +8,17 @@ import LoadingIndicator from "../../components/LoadingIndicator";
 import CustomAppbar from "../../components/CustomAppbar";
 import CustomTextarea from "./components/CustomTextarea";
 import { generatePrompt } from "./services/api";
+import { setDescription, setkeywords } from "./slice";
 
 function HomeScreen() {
-  const [description, setDescription] = useState("");
-  const [keywords, setKeywords] = useState([]);
   const isMobile = useMediaQuery("(max-width:600px)");
   const dispatch = useDispatch();
   // redux slice
-  const { loading, error } = useSelector((state) => state.homeScreenSlice);
+  const { loading, description, keywords } = useSelector(
+    (state) => state.homeScreenSlice
+  );
   // state effect functions
-  const onChangeKeywords = (e) => {
-    const value = e.target.value;
-    const keywordsList = value.split(" ").filter((val) => val != "");
-    setKeywords(keywordsList);
-  };
 
-  const onGeneratePromptClick = () => {
-    dispatch(generatePrompt());
-  };
   if (loading) return <LoadingIndicator />;
   return (
     <>
@@ -40,7 +33,7 @@ function HomeScreen() {
           <Typography>Enter Product Description :</Typography>{" "}
           <CustomTextarea
             props={{ placeholder: "Enter Product Description" }}
-            onChange={(e) => setDescription(e.target.value)}
+            onChange={(e) => dispatch(setDescription(e.target.value))}
             value={description}
           />
         </Box>
@@ -59,10 +52,10 @@ function HomeScreen() {
             placeholder:
               "Enter your keywords ( Enter space for next keyword ) ",
           }}
-          onChange={onChangeKeywords}
+          onChange={(e) => dispatch(setkeywords(e))}
         />
         <Button
-          onClick={onGeneratePromptClick}
+          onClick={() => dispatch(generatePrompt())}
           style={{ width: "250px", marginTop: "30px" }}
         >
           Generate Prompt
