@@ -37,8 +37,8 @@ function HomeScreen() {
         <Box mt={5}>
           <Typography>Selected Keywords :</Typography>{" "}
           <Grid container style={{ width: "64vw" }}>
-            {keywordsList.map((e) => (
-              <KeywordItem text={e} />
+            {keywordsList.map((e, i) => (
+              <KeywordItem text={e} key={i} />
             ))}
           </Grid>
         </Box>
@@ -48,7 +48,14 @@ function HomeScreen() {
           onChange={(e) => dispatch(setkeywords(e.target.value))}
         />
         <Button
-          onClick={() => dispatch(generatePrompt())}
+          onClick={() =>
+            dispatch(
+              generatePrompt({
+                product_description: description,
+                vibe_words: keywords.replace(" ", ","),
+              })
+            )
+          }
           style={{ width: "250px", marginTop: "30px" }}
         >
           Generate Prompt
@@ -57,5 +64,4 @@ function HomeScreen() {
     </>
   );
 }
-
 export default HomeScreen;

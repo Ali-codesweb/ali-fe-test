@@ -2,7 +2,6 @@ import { createSlice } from "@reduxjs/toolkit";
 import { generatePrompt } from "./services/api";
 const initialState = {
   loading: false,
-  error: null,
   description: "",
   keywords: "",
   keywordsList: [],
@@ -31,14 +30,12 @@ export const counterSlice = createSlice({
     builder
       .addCase(generatePrompt.pending, (state) => {
         state.loading = true;
-        state.error = null;
       })
-      .addCase(generatePrompt.fulfilled, (state, action) => {
+      .addCase(generatePrompt.fulfilled, (state) => {
         state.loading = false;
       })
-      .addCase(generatePrompt.rejected, (state, action) => {
+      .addCase(generatePrompt.rejected, (state) => {
         state.loading = false;
-        state.error = action.payload;
       });
   },
 });

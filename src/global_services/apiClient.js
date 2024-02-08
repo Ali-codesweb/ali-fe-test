@@ -1,5 +1,5 @@
 import axios from "axios";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 export const apiClient = axios.create({
   baseURL: "http://127.0.0.1:8000/api/",
 });
@@ -17,7 +17,9 @@ apiClient.interceptors.response.use(
     return config;
   },
   function (error) {
-    toast("Error plzz");
+    const responseError =
+      error.response.data.message.message ?? error.response.data.message;
+    toast(responseError, {});
     // handle errors here. eg: show notifications
     return null;
   }

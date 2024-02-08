@@ -7,7 +7,7 @@ function LoadingIndicator() {
       display={"flex"}
       justifyContent={"center"}
       alignItems={"center"}
-      height={"110vh"}
+      height={"90vh"}
     >
       <CircularProgress />
     </Box>
