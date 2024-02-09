@@ -8,6 +8,7 @@ import CustomTextarea from "./components/CustomTextarea";
 import KeywordItem from "./components/KeywordItem";
 import { generatePrompt } from "./services/api";
 import { setDescription, setkeywords } from "./slice";
+import ResponseModal from "./components/ResponseModal";
 
 function HomeScreen() {
   const dispatch = useDispatch();
@@ -61,6 +62,7 @@ function HomeScreen() {
           Generate Prompt
         </Button>
       </Box>
+      <ResponseModal />
     </>
   );
 }

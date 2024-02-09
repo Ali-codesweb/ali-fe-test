@@ -1,4 +1,4 @@
-import { Box, CircularProgress } from "@mui/joy";
+import { Box, CircularProgress, Typography } from "@mui/joy";
 import React from "react";
 
 function LoadingIndicator() {
@@ -9,6 +9,7 @@ function LoadingIndicator() {
       alignItems={"center"}
       height={"90vh"}
     >
+      <Typography>Just some time .....</Typography>
       <CircularProgress />
     </Box>
   );

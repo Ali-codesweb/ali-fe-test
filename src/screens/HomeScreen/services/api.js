@@ -8,7 +8,7 @@ export const generatePrompt = createAsyncThunk(
     // there is no try catch in here
     const { data } = await apiClient.post(`openapi/`, body);
     if (data) {
-      console.log(data);
+      return data;
     }
   }
 );
