@@ -8,7 +8,6 @@ function ResponseModal() {
     (state) => state.homeScreenSlice
   );
   const dispatch = useDispatch();
-  console.log(responseData);
   return (
     <Modal
       open={responseModelOpen}
