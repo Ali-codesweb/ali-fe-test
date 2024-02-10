@@ -9,12 +9,11 @@ function KeywordItem({ text }) {
   return (
     <Box
       display={"flex"}
-      my={1}
+      m={1}
       borderRadius={25}
       py={1}
       px={2}
       bgcolor={"#1976d2"}
-      mx={1}
     >
       <Typography color="white">{text}</Typography>
       <Typography
