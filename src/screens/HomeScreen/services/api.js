@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { apiClient } from "src/global_services/apiClient.js";
+import { apiClient } from "../../../global_services/apiClient.js";
 // Example action creator
 export const generatePrompt = createAsyncThunk(
   "homeScreenSlice/generatePrompt",
